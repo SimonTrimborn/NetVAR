@@ -1,0 +1,12 @@
+bibentry(bibtype = "Article",
+         title = "Influential assets in Large-Scale Vector AutoRegressive Models",
+         author = c(person("Kexin", "Zhang"),
+		    person("Simon", "Trimborn")),
+         year = "2023",
+	journal = "Discussion Paper",
+         url = "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4619531")
+
+bibentry(bibtype = "Manual",
+         title = "{NetVAR}: Network structure VAR models",
+         author = c(person("Simon", "Trimborn")),
+         year = "2024")

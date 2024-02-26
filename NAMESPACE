@@ -1,0 +1,8 @@
+S3method(plot,NetVAR)
+S3method(print,NetVAR)
+S3method(summary,NetVAR)
+
+export(LISAR)
+
+import(fields)
+importFrom("grDevices", "colorRampPalette")importFrom("graphics", "abline", "axis", "image", "layout", "title")importFrom("utils", "head", "relist", "setTxtProgressBar", "tail",             "txtProgressBar")
