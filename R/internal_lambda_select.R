@@ -1,7 +1,7 @@
 .LambdaSelect = function(LossFunction, test, Ydata_eval, Model) {
   test_eval = test[[1]]
   
-  if (Model == "LISAR.Adap.LASSO") {
+  if (Model == "LISAR.AdapLASSO") {
     lambdas_store = matrix(NA, 
                            nrow = length(test[[2]][[1]]) * length(test[[2]][[2]]) * length(test[[2]][[3]]) * length(test[[2]][[4]]), 
                            ncol = length(test[[2]]) - 1)

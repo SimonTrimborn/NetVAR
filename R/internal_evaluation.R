@@ -72,7 +72,7 @@
     j2 = which(model_res[[2]][[2]] == lambdas_select[2])
     j3 = which(model_res[[2]][[3]] == lambdas_select[3])
     opt_model = model_res_eval[[j1]][[j2]][[j3]]
-  } else if (Model == "LISAR.Adap.LASSO") {
+  } else if (Model == "LISAR.AdapLASSO") {
     model_res_eval = model_res
     lambdas_store = matrix(NA, 
                            nrow = length(model_res[[1]][[2]][[1]]) * length(model_res[[1]][[2]][[2]]) * length(model_res[[1]][[2]][[3]]) * length(alpha_vec) * length(gamma_vec), 
