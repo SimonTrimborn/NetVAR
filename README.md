@@ -58,7 +58,7 @@ The plotting function would provide a plot like this one:
 
 ![](OutputExample.png)
 
-%For more details on the workflow and the output, please see the paper [*""*](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4619531). 
+<!--For more details on the workflow and the output, please see the paper [*""*](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4619531). -->
 
 ### Reference
 
