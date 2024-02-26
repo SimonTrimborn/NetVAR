@@ -303,7 +303,7 @@ LISAR = function(x, Model = "LISAR.LASSO", eval.criteria = "MSFE", Lags = 3,
   ##########################
   ### LISAR Adaptive LASSO
   ##########################
-  if (Model == "LISAR.Adap.LASSO") {
+  if (Model == "LISAR.AdapLASSO") {
     store.time1 = Sys.time()
     store_model_alpha_select = list()
     
