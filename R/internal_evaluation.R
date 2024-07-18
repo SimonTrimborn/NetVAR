@@ -127,8 +127,13 @@
   
   names(opt_model) = paste0("Lag", 1:length(opt_model))
   for (i in 1:length(opt_model)) {
-    rownames(opt_model[[i]]) = rownames(Ydata[[1]])
-    colnames(opt_model[[i]]) = paste0(rownames(Ydata[[1]]), ".", i)
+    if (is.null(rownames(Ydata[[1]]))) {
+      rownames(opt_model[[i]]) = paste0("ts", 1:dim(Ydata[[1]])[1])
+      colnames(opt_model[[i]]) = paste0(paste0("ts", 1:dim(Ydata[[1]])[1]), ".", i)
+    } else {
+      rownames(opt_model[[i]]) = rownames(Ydata[[1]])
+      colnames(opt_model[[i]]) = paste0(rownames(Ydata[[1]]), ".", i)
+    }
   }
   
   return(list(Model = opt_model,  
