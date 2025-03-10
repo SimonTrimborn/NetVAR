@@ -27,8 +27,9 @@ summary.NetVAR <- function(object, ...) {
     cat("\n")
     out <- c(
       paste0("\t MSE: ", round(x$Model.optimal$Model.evaluation[3], 4)), 
-      paste0("\t MSFE: ", round(x$Model.optimal$Model.evaluation[4], 4)),
-      paste0("\t Runtime (in seconds): ", round(x$Model.optimal$Model.evaluation[5], 4))
+      paste0("\t MSE eval: ", round(x$Model.optimal$Model.evaluation[4], 4)), 
+      paste0("\t MSFE: ", round(x$Model.optimal$Model.evaluation[5], 4)),
+      paste0("\t Runtime (in seconds): ", round(x$Model.optimal$Model.evaluation[6], 4))
       )
     cat(paste(out, collapse = "\n"))
     cat("\n")

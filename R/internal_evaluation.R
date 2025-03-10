@@ -1,4 +1,4 @@
-.EvaluateLossFunction = function(LossFunction, Model, model_res, alpha_vec, gamma_vec, Ydata, Ydata_oos, store.time2, store.time1) {
+.EvaluateLossFunction = function(LossFunction, Model, model_res, alpha_vec, gamma_vec, Ydata, Ydata_eval, Ydata_oos, store.time2, store.time1) {
   
   if (Model == "LISAR.SCAD") {
     model_res_eval = model_res[[1]]
@@ -6,7 +6,7 @@
                            nrow = length(model_res[[2]][[1]]) * length(model_res[[2]][[2]]) * length(model_res[[2]][[3]]) * length(alpha_vec), 
                            ncol = length(model_res[[2]]))
     
-    TT.eval = dim(Ydata_oos[[1]])[2]
+    TT.eval = dim(Ydata_eval[[1]])[2]
     counter = 0
     eval_save = c()
     
@@ -15,16 +15,16 @@
         for (j3 in 1:length(model_res[[2]][[3]])) {
           counter = counter + 1
           
-          res1 = Map('%*%', model_res_eval[[j1]][[j2]][[j3]], Ydata_oos[-1])
+          res1 = Map('%*%', model_res_eval[[j1]][[j2]][[j3]], Ydata_eval[-1])
           res2 = Reduce('+',res1)
           if (LossFunction == "BIC") {
-            eval_save[counter] = TT.eval*log(det(((Ydata_oos[[1]] - res2) %*% t((Ydata_oos[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * log(TT.eval)
+            eval_save[counter] = TT.eval*log(det(((Ydata_eval[[1]] - res2) %*% t((Ydata_eval[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * log(TT.eval)
             lambdas_store[counter,] = c(model_res[[2]][[1]][j1], model_res[[2]][[2]][j2], model_res[[2]][[3]][j3], model_res[[2]][[4]])
           } else if (LossFunction == "AIC") {
-            eval_save[counter] = TT.eval*log(det(((Ydata_oos[[1]] - res2) %*% t((Ydata_oos[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * 2
+            eval_save[counter] = TT.eval*log(det(((Ydata_eval[[1]] - res2) %*% t((Ydata_eval[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * 2
             lambdas_store[counter,] = c(model_res[[2]][[1]][j1], model_res[[2]][[2]][j2], model_res[[2]][[3]][j3], model_res[[2]][[4]])
           } else if (LossFunction == "MSFE") {
-            eval_save[counter] = mean((Ydata_oos[[1]] - res2)^2)
+            eval_save[counter] = mean((Ydata_eval[[1]] - res2)^2)
             lambdas_store[counter,] = c(model_res[[2]][[1]][j1], model_res[[2]][[2]][j2], model_res[[2]][[3]][j3], model_res[[2]][[4]])
           }
         }
@@ -42,7 +42,7 @@
                            nrow = length(model_res[[2]][[1]]) * length(model_res[[2]][[2]]) * length(model_res[[2]][[3]]) * length(alpha_vec), 
                            ncol = length(model_res[[2]]))
     
-    TT.eval = dim(Ydata_oos[[1]])[2]
+    TT.eval = dim(Ydata_eval[[1]])[2]
     counter = 0
     eval_save = c()
     
@@ -51,16 +51,16 @@
         for (j3 in 1:length(model_res[[2]][[3]])) {
           counter = counter + 1
           
-          res1 = Map('%*%', model_res_eval[[j1]][[j2]][[j3]], Ydata_oos[-1])
+          res1 = Map('%*%', model_res_eval[[j1]][[j2]][[j3]], Ydata_eval[-1])
           res2 = Reduce('+',res1)
           if (LossFunction == "BIC") {
-            eval_save[counter] = TT.eval*log(det(((Ydata_oos[[1]] - res2) %*% t((Ydata_oos[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * log(TT.eval)
+            eval_save[counter] = TT.eval*log(det(((Ydata_eval[[1]] - res2) %*% t((Ydata_eval[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * log(TT.eval)
             lambdas_store[counter,] = c(model_res[[2]][[1]][j1], model_res[[2]][[2]][j2], model_res[[2]][[3]][j3], model_res[[2]][[4]])
           } else if (LossFunction == "AIC") {
-            eval_save[counter] = TT.eval*log(det(((Ydata_oos[[1]] - res2) %*% t((Ydata_oos[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * 2
+            eval_save[counter] = TT.eval*log(det(((Ydata_eval[[1]] - res2) %*% t((Ydata_eval[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j1]][[j2]][[j3]]) != 0) * 2
             lambdas_store[counter,] = c(model_res[[2]][[1]][j1], model_res[[2]][[2]][j2], model_res[[2]][[3]][j3], model_res[[2]][[4]])
           } else if (LossFunction == "MSFE") {
-            eval_save[counter] = mean((Ydata_oos[[1]] - res2)^2)
+            eval_save[counter] = mean((Ydata_eval[[1]] - res2)^2)
             lambdas_store[counter,] = c(model_res[[2]][[1]][j1], model_res[[2]][[2]][j2], model_res[[2]][[3]][j3], model_res[[2]][[4]])
           }
         }
@@ -78,7 +78,7 @@
                            nrow = length(model_res[[1]][[2]][[1]]) * length(model_res[[1]][[2]][[2]]) * length(model_res[[1]][[2]][[3]]) * length(alpha_vec) * length(gamma_vec), 
                            ncol = length(model_res[[1]][[2]]))
     
-    TT.eval = dim(Ydata_oos[[1]])[2]
+    TT.eval = dim(Ydata_eval[[1]])[2]
     counter = 0
     eval_save = c()
     
@@ -88,16 +88,16 @@
           for (j3 in 1:length(model_res[[j4]][[2]][[3]])) {
             counter = counter + 1
             
-            res1 = Map('%*%', model_res_eval[[j4]][[1]][[j1]][[j2]][[j3]], Ydata_oos[-1])
+            res1 = Map('%*%', model_res_eval[[j4]][[1]][[j1]][[j2]][[j3]], Ydata_eval[-1])
             res2 = Reduce('+',res1)
             if (LossFunction == "BIC") {
-              eval_save[counter] = TT.eval*log(det(((Ydata_oos[[1]] - res2) %*% t((Ydata_oos[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j4]][[1]][[j1]][[j2]][[j3]]) != 0) * log(TT.eval)
+              eval_save[counter] = TT.eval*log(det(((Ydata_eval[[1]] - res2) %*% t((Ydata_eval[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j4]][[1]][[j1]][[j2]][[j3]]) != 0) * log(TT.eval)
               lambdas_store[counter,] = c(model_res[[j4]][[2]][[1]][j1], model_res[[j4]][[2]][[2]][j2], model_res[[j4]][[2]][[3]][j3], model_res[[j4]][[2]][[4]], model_res[[j4]][[2]][[5]])
             } else if (LossFunction == "AIC") {
-              eval_save[counter] = TT.eval*log(det(((Ydata_oos[[1]] - res2) %*% t((Ydata_oos[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j4]][[1]][[j1]][[j2]][[j3]]) != 0) * 2
+              eval_save[counter] = TT.eval*log(det(((Ydata_eval[[1]] - res2) %*% t((Ydata_eval[[1]] - res2))) / TT.eval)) + sum(unlist(model_res_eval[[j4]][[1]][[j1]][[j2]][[j3]]) != 0) * 2
               lambdas_store[counter,] = c(model_res[[j4]][[2]][[1]][j1], model_res[[j4]][[2]][[2]][j2], model_res[[j4]][[2]][[3]][j3], model_res[[j4]][[2]][[4]], model_res[[j4]][[2]][[5]])
             } else if (LossFunction == "MSFE") {
-              eval_save[counter] = mean((Ydata_oos[[1]] - res2)^2)
+              eval_save[counter] = mean((Ydata_eval[[1]] - res2)^2)
               lambdas_store[counter,] = c(model_res[[j4]][[2]][[1]][j1], model_res[[j4]][[2]][[2]][j2], model_res[[j4]][[2]][[3]][j3], model_res[[j4]][[2]][[4]], model_res[[j4]][[2]][[5]])
             }
           }
@@ -121,9 +121,10 @@
   LagsChosen = max(which(sapply(opt_model, function(x) !all(x == 0)) == TRUE),0)
   NumberIncludedPara = length(which(round(unlist(opt_model),4) != 0))
   MSE = mean((Ydata[[1]] - Reduce('+',Map('%*%', opt_model, Ydata[-1])))^2) 
+  MSEeval = mean((Ydata_eval[[1]] - Reduce('+',Map('%*%', opt_model, Ydata_eval[-1])))^2)
   MSFE = mean((Ydata_oos[[1]] - Reduce('+',Map('%*%', opt_model, Ydata_oos[-1])))^2) 
-  evals = c(LagsChosen, NumberIncludedPara, MSE, MSFE, as.numeric(store.time2) - as.numeric(store.time1))
-  names(evals) = c("Chosen Lags", "Included parameters","MSE", "MSFE","estimation time")
+  evals = c(LagsChosen, NumberIncludedPara, MSE, MSEeval, MSFE, as.numeric(store.time2) - as.numeric(store.time1))
+  names(evals) = c("Chosen Lags", "Included parameters","MSE", "MSE eval", "MSFE","estimation time")
   
   names(opt_model) = paste0("Lag", 1:length(opt_model))
   for (i in 1:length(opt_model)) {

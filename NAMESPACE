@@ -6,3 +6,5 @@ export(LISAR)
 
 import(fields)
 importFrom("grDevices", "colorRampPalette")importFrom("graphics", "abline", "axis", "image", "layout", "title")importFrom("utils", "head", "relist", "setTxtProgressBar", "tail",             "txtProgressBar")
+importFrom("stats", "sd")
+importFrom("fGarch", "garchFit")

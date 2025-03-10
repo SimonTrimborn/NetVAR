@@ -130,7 +130,10 @@ LISAR = function(x, Model = "LISAR.LASSO", eval.criteria = "MSFE", Lags = 3,
   
 
   
-  dat = scale(x)
+  dat = x - colMeans(x) 
+  B = apply(dat, 2, function (xx) {a = try(garchFit(data = xx)@sigma.t, silent = TRUE); 
+  if (class(a) == "try-error") {rep(sd(xx), length(xx))} else {a}})
+  dat = dat / B
   
   TT = nrow(dat)
   N = ncol(dat)
@@ -370,6 +373,7 @@ LISAR = function(x, Model = "LISAR.LASSO", eval.criteria = "MSFE", Lags = 3,
   
   EvaluateModel = .EvaluateLossFunction(eval.criteria, Model, store_model_alpha_select, alpha.pens, gamma.pens, 
                                         Ydata, 
+                                        Ydata_eval, 
                                         Ydata_oos, 
                                         store.time2, 
                                         store.time1)
