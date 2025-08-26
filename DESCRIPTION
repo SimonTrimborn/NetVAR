@@ -2,7 +2,7 @@ Package: NetVAR
 Type: Package
 Title: NetVAR: Network structures in VAR models
 Version: 0.1-2
-Date: 2025-03-10
+Date: 2025-08-26
 Author: Simon Trimborn <trimborn.econometrics@gmail.com>
 Maintainer: Simon Trimborn <trimborn.econometrics@gmail.com>
 LazyLoad: yes
@@ -13,4 +13,4 @@ Description: VAR type models with tailored regularisation structures are provide
 License: GPL (>=3)
 NeedsCompilation: yes
 Packaged: 2024-02-26 07:44:29 UTC
-RoxygenNote: 7.2.2
+RoxygenNote: 7.3.2

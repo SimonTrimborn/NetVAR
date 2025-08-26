@@ -9,4 +9,4 @@ bibentry(bibtype = "Article",
 bibentry(bibtype = "Manual",
          title = "{NetVAR}: Network structure VAR models",
          author = c(person("Simon", "Trimborn")),
-         year = "2024")
+         year = "2025")

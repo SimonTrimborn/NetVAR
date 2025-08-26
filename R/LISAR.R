@@ -132,7 +132,7 @@ LISAR = function(x, Model = "LISAR.LASSO", eval.criteria = "MSFE", Lags = 3,
   
   dat = x - colMeans(x) 
   B = apply(dat, 2, function (xx) {a = try(garchFit(data = xx)@sigma.t, silent = TRUE); 
-  if (class(a) == "try-error") {rep(sd(xx), length(xx))} else {a}})
+  if (inherits(a, "try-error")) {rep(sd(xx), length(xx))} else {a}})
   dat = dat / B
   
   TT = nrow(dat)
