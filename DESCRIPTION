@@ -1,10 +1,12 @@
 Package: NetVAR
 Type: Package
-Title: NetVAR: Network structures in VAR models
+Title: Network Structures in VAR Models
 Version: 0.1-2
 Date: 2025-08-26
-Author: Simon Trimborn <trimborn.econometrics@gmail.com>
-Maintainer: Simon Trimborn <trimborn.econometrics@gmail.com>
+Authors@R: person(given = "Simon",
+			family = "Trimborn",
+			role = c("aut", "cre"), 
+			email = "trimborn.econometrics@gmail.com")
 LazyLoad: yes
 LazyData: true
 Depends: R (>= 3.5.0)

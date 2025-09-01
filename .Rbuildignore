@@ -1,0 +1,18 @@
+# Ignore GitHub-only example picture
+^OutputExample\.png$
+
+# Ignore License
+^LICENSE$
+
+# Ignore docs folder (GitHub docs, vignettes not intended for CRAN)
+^docs/
+
+# Ignore GitHub-only README
+^README\.md$
+^README\.Rmd$
+
+# Ignore common GitHub/OS files
+^\\.gitignore$
+^\\.github/
+^\\.Rproj\.user/
+^\\.DS_Store$
