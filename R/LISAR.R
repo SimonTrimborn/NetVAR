@@ -65,7 +65,7 @@
 #' \doi{http://dx.doi.org/10.2139/ssrn.4619531}\cr \cr 
 #' @examples
 #' 
-#' \dontrun{
+#' \donttest{
 #' data(TradingData)
 #' 
 #' LISAR(TradingData, Model = "LISAR.LASSO")

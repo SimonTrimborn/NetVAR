@@ -102,7 +102,7 @@ allows to compute the LISAR model under \code{"LASSO"}, \code{"SCAD"} and
 }
 \examples{
 
-\dontrun{
+\donttest{
 data(TradingData)
 
 LISAR(TradingData, Model = "LISAR.LASSO")
