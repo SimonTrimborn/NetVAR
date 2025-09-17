@@ -102,10 +102,23 @@ allows to compute the LISAR model under \code{"LASSO"}, \code{"SCAD"} and
 }
 \examples{
 
-\donttest{
+# Investigate influential assets relationship between 3 assets only
 data(TradingData)
 
+LISAR(TradingData[,c("AIG", "AXP", "BAC")], Model = "LISAR.LASSO", Lags = 1)
+
+# Reoptimise the penalisation sequence
+LISAR(TradingData[,c("AIG", "AXP", "BAC")], Model = "LISAR.LASSO", Lags = 1, reoptim = TRUE)
+
+\donttest{
+# Investigate influential assets relationship between the entire asset universe with starting values
 LISAR(TradingData, Model = "LISAR.LASSO")
+
+# Reoptimise the penalisation sequence
+LISAR(TradingData, Model = "LISAR.LASSO", reoptim = TRUE)
+
+# Consider a different model
+LISAR(TradingData, Model = "LISAR.SCAD", Lags = 1)
 }
 }
 \references{
